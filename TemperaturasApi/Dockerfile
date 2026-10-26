@@ -3,7 +3,7 @@ WORKDIR /app
 EXPOSE 5120
 
 ENV ASPNETCORE_URLS=http://+:5120
-ENV TZ="America/Costa_Rica"
+ENV TZ=America/Costa_Rica
 
 RUN apt-get update 
 && apt-get install -y --no-install-recommends tzdata 
@@ -20,8 +20,6 @@ COPY ["TemperaturasApi.csproj", "./"]
 RUN dotnet restore "TemperaturasApi.csproj"
 
 COPY . .
-
-WORKDIR "/src/."
 
 RUN dotnet build "TemperaturasApi.csproj" 
 -c $configuration 
