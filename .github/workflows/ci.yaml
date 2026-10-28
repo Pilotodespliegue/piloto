@@ -40,6 +40,8 @@ jobs:
       branch-name: ${{ github.head_ref || github.ref_name }}
       image-name: TemperaturasApi
       dockerfile-path: .
-      deployment-file: ./deployment.yaml
+      deployment-file: ./k8s/deployment.yaml
+      deployment-name: temperaturasapidotnet
+      container-name: temperaturasapidotnet
       target-environment: ${{ inputs.target-environment || 'DEV' }}
       image-tag: ${{ inputs.image-tag || '' }}
