@@ -11,10 +11,10 @@ USER app
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG configuration=Release
 WORKDIR /src
-COPY ["TemperaturasApi.csproj", "./"]
-RUN dotnet restore "TemperaturasApi.csproj"
+COPY ["TemperaturasApi/TemperaturasApi.csproj", "TemperaturasApi/"]
+RUN dotnet restore "TemperaturasApi/TemperaturasApi.csproj"
 COPY . .
-WORKDIR "/src/."
+WORKDIR "/src/TemperaturasApi"
 RUN dotnet build "TemperaturasApi.csproj" -c $configuration -o /app/build
 
 FROM build AS publish
