@@ -1,0 +1,32 @@
+name: CI/CD Pipeline
+
+on:
+
+  # PR hacia ramas de iniciativa
+  pull_request:
+    branches:
+      - 'iniciativa/**'
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+  # Ejecución manual
+  workflow_dispatch:
+
+jobs:
+  cicd:
+    name: CI/CD Pipeline
+    permissions:
+      contents: read
+      id-token: write
+    uses: Pilotodespliegue/automation/.github/workflows/aks.cicd.yml@main
+    with:
+      branch-name: ${{ github.head_ref || github.ref_name }}
+      image-name: temperaturasapidotnet
+      dockerfile-path: .
+      deployment-file: ./k8s/deployment.yaml
+      deployment-name: temperaturasapidotnet
+      container-name: temperaturasapidotnet
+      target-environment: DEV
+    secrets: inherit
