@@ -26,3 +26,4 @@ jobs:
       deployment-name: temperaturasapidotnet
       container-name: temperaturasapidotnet
       target-environment: DEV
+    secrets: inherit
