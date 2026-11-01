@@ -17,6 +17,9 @@ on:
 jobs:
   cicd:
     name: CI/CD Pipeline
+    permissions:
+      contents: read
+      id-token: write
     uses: Pilotodespliegue/automation/.github/workflows/aks.cicd.yml@main
     with:
       branch-name: ${{ github.head_ref || github.ref_name }}
